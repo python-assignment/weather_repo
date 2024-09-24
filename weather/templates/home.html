@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <form method = "post">
+        {% csrf_token %}
+        <input type = "text" name="city" placeholder="Enter city" required>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!--{% if Weather_data %}
+        {% if weather_data.error %}
+           <p>{{ weather_data.error}}</p>
+        {% else %}
+            <h2>Weather in {{ weather_data.name}}</h2>
+            <p>Temperature: {{weather_data.main.temp}}°C</p>
+            <p>Condition: {{weather_data.weather.0.description }}</p>
+        {% endif %}
+    {% endif %}-->
+    
+    
+   {% if weather_data %}
+    <div class="weather-info">
+        {% if weather_data.error %}
+            <p class="error">{{ weather_data.error }}</p>
+        {% else %}
+            <h2>Weather in {{ weather_data.name }}</h2>
+            <p>Temperature: {{ weather_data.main.temp }} °C</p>
+            <p>Weather: {{ weather_data.weather.0.description }}</p>
+            <p>Humidity: {{ weather_data.main.humidity }}%</p>
+        {% endif %}
+    </div>
+{% endif %}
